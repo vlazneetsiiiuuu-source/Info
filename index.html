@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>ИСП | Мобильный сайт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .mobile-container {
+            max-width: 480px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            color: white;
+            padding: 28px 20px 32px;
+            border-radius: 0 0 32px 32px;
+        }
+
+        .hero h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            color: #cbd5e1;
+            max-width: 90%;
+        }
+
+        .description-card {
+            background: white;
+            margin: 20px 20px 16px;
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+
+        .description-card p {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .courses-nav {
+            display: flex;
+            gap: 8px;
+            padding: 8px 20px 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .courses-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .course-tab {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            white-space: nowrap;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .course-tab.active {
+            background: #0f172a;
+            color: white;
+            border-color: #0f172a;
+        }
+
+        .course-content {
+            padding: 20px;
+            background: white;
+            border-radius: 24px;
+            margin: 8px 20px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+
+        .course-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .course-title i {
+            color: #3b82f6;
+            font-size: 24px;
+        }
+
+        .course-text {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        .course-text ul {
+            margin-top: 12px;
+            padding-left: 24px;
+        }
+
+        .course-text li {
+            margin-bottom: 8px;
+        }
+
+        .image-block {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 16px;
+            margin: 20px 0 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .image-title {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Компактная Java Swing форма */
+        .mockup-window {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #2d2d2d;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .student-form-java {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .blue-header {
+            background: #0000ff;
+            color: #ffd700;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 6px;
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .gray-panel {
+            background: #808080;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 55px 1fr;
+            gap: 5px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .java-label {
+            color: white;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+        }
+
+        .java-field {
+            background: white;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: #000;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .bottom-panel {
+            background: #808080;
+            padding: 8px;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .java-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .java-btn {
+            background: #e0e0e0;
+            color: #000;
+            border: none;
+            padding: 5px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            white-space: nowrap;
+            flex: 1 0 calc(50% - 5px);
+            max-width: calc(50% - 5px);
+        }
+
+        .java-btn i {
+            font-size: 9px;
+        }
+
+        /* Блок с кодом - компактный */
+        .code-block {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 16px;
+            border: 1px solid #334155;
+            width: 100%;
+        }
+
+        .code-title {
+            color: #e2e8f0;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .code-window {
+            background: #1e1e2f;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #334155;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .code-window pre {
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+        }
+
+        .code-window::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .code-window::-webkit-scrollbar-track {
+            background: #0f172a;
+            border-radius: 10px;
+        }
+
+        .code-window::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+
+        .game-section {
+            background: #0f172a;
+            border-radius: 28px;
+            padding: 20px;
+            margin: 20px 0 12px;
+            color: white;
+        }
+
+        .game-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .game-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .dino-game {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-canvas {
+            background: #0b1120;
+            border-radius: 16px;
+            width: 100%;
+            height: 140px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #334155;
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: repeating-linear-gradient(90deg, #4b5563 0px, #4b5563 15px, transparent 15px, transparent 30px);
+        }
+
+        .dino {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 42px;
+            z-index: 20;
+            cursor: pointer;
+            transition: none;
+        }
+
+        .cactus {
+            position: absolute;
+            bottom: 20px;
+            right: -40px;
+            font-size: 38px;
+            z-index: 15;
+        }
+
+        .game-status {
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            margin: 15px 0;
+            min-height: 40px;
+            color: #facc15;
+        }
+
+        .restart-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .restart-btn:active {
+            transform: scale(0.97);
+            background: #2563eb;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .score {
+            color: #facc15;
+            font-weight: 700;
+        }
+
+        .salary-section {
+            background: linear-gradient(145deg, #f8fafc, #ffffff);
+            margin: 20px 20px 30px;
+            padding: 24px 20px;
+            border-radius: 28px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .salary-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+        }
+
+        .salary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .salary-item {
+            background: white;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+
+        .salary-item span {
+            display: block;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .salary-item strong {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .salary-note {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #475569;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 16px;
+        }
+
+        .footer {
+            margin-top: auto;
+            background: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <div class="hero">
+            <h1>Информационные системы и программирование</h1>
+            <p>Разработка • Внедрение • Поддержка</p>
+        </div>
+
+        <div class="description-card">
+            <p style="font-weight: 500; color: #0f172a; margin-bottom: 8px;">🎓 Специальность</p>
+            <p>«Информационные системы и программирование» — готовит специалистов, способных разрабатывать, внедрять и обслуживать информационные системы, а также заниматься программированием. Это синтез двух областей: создания программного обеспечения и его интеграции в бизнес-процессы для решения реальных задач.</p>
+        </div>
+
+        <div class="courses-nav">
+            <span class="course-tab active" data-course="1">1-й курс</span>
+            <span class="course-tab" data-course="2">2-й курс</span>
+            <span class="course-tab" data-course="3">3-й курс</span>
+            <span class="course-tab" data-course="4">4-й курс</span>
+        </div>
+
+        <div id="course-1" class="course-content">
+            <div class="course-title"><i class="fas fa-graduation-cap"></i> 1-й курс</div>
+            <div class="course-text">
+                <p style="font-weight: 600; margin-bottom: 10px;">🎯 База: 9–11 классы</p>
+                <p>На первом курсе обучаются на базе 10–11 классов, углубленно проходят информатику:</p>
+                <ul>
+                    <li><i class="fas fa-file-word"></i> Word — документы</li>
+                    <li><i class="fas fa-file-excel"></i> Excel — таблицы</li>
+                    <li><i class="fas fa-file-powerpoint"></i> PowerPoint — презентации</li>
+                    <li><i class="fas fa-file-image"></i> Publisher — верстка</li>
+                </ul>
+                <p style="margin-top: 12px;">Работа с данными программами нередко пригождается в жизни.</p>
+            </div>
+        </div>
+
+        <div id="course-2" class="course-content" style="display: none;">
+            <div class="course-title"><i class="fas fa-code"></i> 2-й курс</div>
+            <div class="course-text">
+                <p>На данном курсе вас обучат программировать на <strong>Python</strong>:</p>
+                <ul>
+                    <li>🐍 Решение математических задач с помощью кода</li>
+                    <li>📊 Анализ данных и автоматизация</li>
+                    <li>🖥️ Основы разработки программного обеспечения</li>
+                </ul>
+                <p style="margin-top: 12px;">Также на 2-м курсе начинают теоретически готовить к разработке ПО для организаций.</p>
+            </div>
+
+            <div class="game-section">
+                <div class="game-header">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Вот такую игру можно написать на Python</h3>
+                </div>
+
+                <div class="dino-game">
+                    <div class="game-canvas" id="gameCanvas">
+                        <div class="ground"></div>
+                        <div class="dino" id="dino">🦖</div>
+                        <div class="cactus" id="cactus">🌵</div>
+                    </div>
+
+                    <div class="game-status" id="gameStatus"></div>
+
+                    <button class="restart-btn" id="restartBtn">
+                        <i class="fas fa-undo-alt"></i> Начать заново
+                    </button>
+
+                    <div class="game-controls">
+                        <span><i class="fas fa-hand-pointer"></i> Нажми на динозавра</span>
+                        <span class="score" id="scoreDisplay">🏆 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="course-3" class="course-content" style="display: none;">
+            <div class="course-title"><i class="fas fa-database"></i> 3-й курс</div>
+            <div class="course-text">
+                <p>🔹 <strong>Access</strong> — подготовка к работе с базами данных</p>
+                <p>🔹 <strong>Java</strong> — решение математических задач, проектирование графических форм</p>
+                <p>🔹 <strong>MySQL</strong> — разработка и проектирование баз данных</p>
+                <p>🔹 <strong>Компьютерные сети</strong> — создание сетей, администрирование</p>
+            </div>
+
+            <div class="image-block" style="padding: 12px;">
+                <div class="image-title"><i class="fas fa-window-restore"></i> Пример графической формы</div>
+
+                <div class="mockup-window" style="padding: 10px;">
+                    <div class="student-form-java" style="gap: 6px;">
+                        <div class="blue-header" style="padding: 6px; font-size: 15px;">
+                            Сведение о студенте
+                        </div>
+
+                        <div class="gray-panel" style="padding: 10px;">
+                            <div class="form-grid" style="grid-template-columns: 55px 1fr; gap: 5px;">
+                                <span class="java-label" style="font-size: 11px;">Ф.И.О:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">Иванов И.И.</div>
+
+                                <span class="java-label" style="font-size: 11px;">Адрес:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">ул. Ленина, 1</div>
+
+                                <span class="java-label" style="font-size: 11px;">Тел:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">+7 (999) 123-45-67</div>
+
+                                <span class="java-label" style="font-size: 11px;">Сп-ть:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">ИСП</div>
+
+                                <span class="java-label" style="font-size: 11px;">Группа:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">ИСП-201</div>
+
+                                <span class="java-label" style="font-size: 11px;">Курс:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">3</div>
+
+                                <span class="java-label" style="font-size: 11px;">Статус:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">Активен</div>
+
+                                <span class="java-label" style="font-size: 11px;">Пол:</span>
+                                <div class="java-field" style="padding: 3px 6px; font-size: 11px;">Мужской</div>
+                            </div>
+                        </div>
+
+                        <div class="bottom-panel" style="padding: 8px; background: #808080;">
+                            <div class="java-buttons" style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;">
+                                <button class="java-btn" style="padding: 5px 6px; font-size: 10px; flex: 1 0 calc(50% - 5px); max-width: calc(50% - 5px);">
+                                    <i class="fas fa-plus" style="font-size: 9px;"></i> Добавить
+                                </button>
+                                <button class="java-btn" style="padding: 5px 6px; font-size: 10px; flex: 1 0 calc(50% - 5px); max-width: calc(50% - 5px);">
+                                    <i class="fas fa-save" style="font-size: 9px;"></i> Сохранить
+                                </button>
+                                <button class="java-btn" style="padding: 5px 6px; font-size: 10px; flex: 1 0 calc(50% - 5px); max-width: calc(50% - 5px);">
+                                    <i class="fas fa-trash" style="font-size: 9px;"></i> Удалить
+                                </button>
+                                <button class="java-btn" style="padding: 5px 6px; font-size: 10px; flex: 1 0 calc(50% - 5px); max-width: calc(50% - 5px);">
+                                    <i class="fas fa-sign-out-alt" style="font-size: 9px;"></i> Выход
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block" style="padding: 10px; margin-top: 12px;">
+                    <div class="code-title" style="font-size: 13px; margin-bottom: 8px;">
+                        <i class="fas fa-code"></i> Листинг кода (MyFrame.java)
+                    </div>
+                    <div class="code-window" style="max-height: 200px; padding: 10px;">
+                        <pre style="font-size: 10px; line-height: 1.3;">
+import javax.swing.*;
+import java.awt.*;
+
+public class MyFrame extends JFrame {
+    MyFrame() {
+        // Текст
+        JLabel label = new JLabel("Сведение о студенте");
+        label.setFont(new Font("", Font.PLAIN, 20));
+        label.setForeground(Color.yellow);
+
+        // Настройка текста
+        JLabel FIO_label = new JLabel("Ф.И.О:");
+        JLabel Adres_label = new JLabel("Адрес:");
+        JLabel Tel_label = new JLabel("Тел:");
+        JLabel Spec_label = new JLabel("Сп-ть:");
+        JLabel Group_label = new JLabel("Группа:");
+        JLabel Kurs_label = new JLabel("Курс:");
+        JLabel Status_label = new JLabel("Статус:");
+        JLabel Pol_label = new JLabel("Пол:");
+
+        // Настройка текста цвет
+        FIO_label.setForeground(Color.white);
+        Adres_label.setForeground(Color.white);
+        Tel_label.setForeground(Color.white);
+        Spec_label.setForeground(Color.white);
+        Group_label.setForeground(Color.white);
+        Kurs_label.setForeground(Color.white);
+        Status_label.setForeground(Color.white);
+        Pol_label.setForeground(Color.white);
+
+        // Поля ввода
+        JEditorPane edit_FIO = new JEditorPane();
+        JEditorPane edit_Adres = new JEditorPane();
+        JEditorPane edit_Tel = new JEditorPane();
+        JEditorPane edit_Spec = new JEditorPane();
+        JEditorPane edit_Group = new JEditorPane();
+        JEditorPane edit_Kurs = new JEditorPane();
+        JEditorPane edit_Status = new JEditorPane();
+        JEditorPane edit_Pol = new JEditorPane();
+
+        // Панели
+        JPanel blue_panel = new JPanel();
+        blue_panel.setBackground(Color.BLUE);
+        blue_panel.add(label);
+
+        JPanel center_panel = new JPanel();
+        center_panel.setBackground(Color.GRAY);
+        center_panel.setLayout(null);
+
+        // Кнопки
+        JButton btnAdd = new JButton("Добавить");
+        JButton btnSave = new JButton("Сохранить");
+        JButton btnDelete = new JButton("Удалить");
+        JButton btnExit = new JButton("Выход");
+
+        // Настройка формы
+        this.setSize(500, 500);
+        this.setLayout(null);
+        this.setTitle("Информационная система");
+        this.setResizable(false);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setVisible(true);
+
+        // Добавление элементов на форму
+        this.add(blue_panel);
+        this.add(center_panel);
+        this.add(btnAdd);
+        this.add(btnSave);
+        this.add(btnDelete);
+        this.add(btnExit);
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <p style="font-size: 10px; color: #475569; margin-top: 8px; text-align: center;">
+                    * Графическая форма на Java Swing с использованием JFrame
+                </p>
+            </div>
+            <p class="course-text" style="margin-top: 12px; font-size: 14px;">
+                На 3-м курсе вы научитесь создавать такие формы, связывать их с базами данных и разрабатывать полноценные приложения.
+            </p>
+        </div>
+
+        <div id="course-4" class="course-content" style="display: none;">
+            <div class="course-title"><i class="fas fa-briefcase"></i> 4-й курс</div>
+            <div class="course-text">
+                <p>📌 <strong>Связи Базы данных и Графической формы</strong> — интеграция</p>
+                <p>📌 <strong>Практика:</strong> закрепление полученных знаний на реальных проектах</p>
+                <p>📌 <strong>Дипломное проектирование:</strong> разработка информационной системы под ключ</p>
+                <p style="margin-top: 16px; background: #f1f5f9; padding: 16px; border-radius: 16px;">
+                    <i class="fas fa-star" style="color: #eab308;"></i> Выпускники готовы к работе в IT-компаниях, отделах разработки, системными аналитиками, администраторами БД и программистами.
+                </p>
+            </div>
+        </div>
+
+        <div class="salary-section">
+            <div class="salary-title"><i class="fas fa-ruble-sign"></i> Заработок профессий (РФ, 2026)</div>
+            <div class="salary-grid">
+                <div class="salary-item"><span>💻 Программист Python</span><strong>90–220 тыс.</strong></div>
+                <div class="salary-item"><span>🗄️ Администратор БД</span><strong>100–250 тыс.</strong></div>
+                <div class="salary-item"><span>🌐 Сетевой инженер</span><strong>80–180 тыс.</strong></div>
+                <div class="salary-item"><span>📊 1С-разработчик</span><strong>110–230 тыс.</strong></div>
+                <div class="salary-item"><span>☕ Java-разработчик</span><strong>120–270 тыс.</strong></div>
+                <div class="salary-item"><span>🛠️ Системный аналитик</span><strong>130–280 тыс.</strong></div>
+            </div>
+            <div class="salary-note"><i class="fas fa-info-circle"></i> По данным hh.ru и Superjob, 2026. Уровень зависит от региона и стека.</div>
+        </div>
+
+        <div class="footer">
+            <p>Информационные системы и программирование • 2026</p>
+            <p style="margin-top: 8px;">Образовательная программа | Мобильный гид по специальности</p>
+        </div>
+    </div>
+
+    <script>
+        // ========== ПЕРЕКЛЮЧЕНИЕ КУРСОВ ==========
+        const tabs = document.querySelectorAll('.course-tab');
+        const courses = {
+            1: document.getElementById('course-1'),
+            2: document.getElementById('course-2'),
+            3: document.getElementById('course-3'),
+            4: document.getElementById('course-4')
+        };
+
+        function showCourse(courseId) {
+            Object.values(courses).forEach(el => el.style.display = 'none');
+            if (courses[courseId]) courses[courseId].style.display = 'block';
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.course-tab[data-course="${courseId}"]`).classList.add('active');
+
+            // Перезапускаем игру при переходе на 2-й курс
+            if (courseId == 2) {
+                setTimeout(() => restartGame(), 100);
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                showCourse(this.getAttribute('data-course'));
+            });
+        });
+
+        // Показываем 1-й курс по умолчанию
+        showCourse(1);
+
+        const dino = document.getElementById('dino');
+        const cactus = document.getElementById('cactus');
+        const gameStatus = document.getElementById('gameStatus');
+        const restartBtn = document.getElementById('restartBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+
+        let gameOver = false;
+        let score = 0;
+        let cactusSpeed = 5;
+        let isJumping = false;
+        let isReturning = false;
+
+        let cactusInterval;
+        let collisionInterval;
+        let scoreInterval;
+
+        function jump() {
+            if (gameOver || isJumping || isReturning) return;
+
+            isJumping = true;
+
+            dino.style.transition = 'all 0.2s ease';
+            dino.style.bottom = '90px';
+            dino.style.left = '90px';
+
+            setTimeout(() => {
+                if (!gameOver && isJumping) {
+                    dino.style.transition = 'all 0.15s ease';
+                    dino.style.bottom = '20px';
+                }
+            }, 300);
+
+            setTimeout(() => {
+                if (!gameOver && isJumping) {
+                    isJumping = false;
+                    isReturning = true;
+
+                    dino.style.transition = 'left 1.5s cubic-bezier(0.3, 0.8, 0.2, 1)';
+                    dino.style.left = '30px';
+
+                    setTimeout(() => {
+                        isReturning = false;
+                    }, 1500);
+                }
+            }, 500);
+        }
+
+        dino.addEventListener('click', function(e) {
+            e.stopPropagation();
+            jump();
+        });
+
+        function moveCactus() {
+            if (gameOver) return;
+
+            let cactusRight = parseInt(cactus.style.right);
+            if (isNaN(cactusRight)) cactusRight = -40;
+
+            cactusRight += cactusSpeed;
+            cactus.style.right = cactusRight + 'px';
+
+            if (cactusRight > 400) {
+                cactus.style.right = '-40px';
+                cactusSpeed = Math.min(cactusSpeed + 0.3, 14);
+            }
+        }
+
+        function checkCollision() {
+            if (gameOver) return;
+
+            try {
+                const dinoRect = dino.getBoundingClientRect();
+                const cactusRect = cactus.getBoundingClientRect();
+
+                const dinoBottom = parseInt(dino.style.bottom);
+                const isHigh = dinoBottom > 60;
+
+                if (!isHigh) {
+                    if (dinoRect.right > cactusRect.left + 10 &&
+                        dinoRect.left < cactusRect.right - 10 &&
+                        dinoRect.bottom > cactusRect.top + 10) {
+
+                        gameOver = true;
+                        gameStatus.innerHTML = '💀 GAME OVER 💀';
+                        gameStatus.style.color = '#ef4444';
+
+                        clearInterval(cactusInterval);
+                        clearInterval(collisionInterval);
+                        clearInterval(scoreInterval);
+                    }
+                }
+            } catch(e) {}
+        }
+
+        function addScore() {
+            if (!gameOver) {
+                score += 1;
+                scoreDisplay.innerHTML = '🏆 ' + score;
+            }
+        }
+
+        function restartGame() {
+            clearInterval(cactusInterval);
+            clearInterval(collisionInterval);
+            clearInterval(scoreInterval);
+
+            gameOver = false;
+            isJumping = false;
+            isReturning = false;
+            score = 0;
+            cactusSpeed = 5;
+
+            cactus.style.right = '-40px';
+
+            dino.style.transition = 'none';
+            dino.style.bottom = '20px';
+            dino.style.left = '30px';
+
+            gameStatus.innerHTML = '';
+            scoreDisplay.innerHTML = '🏆 0';
+
+            cactusInterval = setInterval(moveCactus, 30);
+            collisionInterval = setInterval(checkCollision, 30);
+            scoreInterval = setInterval(addScore, 200);
+        }
+
+        restartBtn.addEventListener('click', restartGame);
+
+        // Демо-режим для кнопок формы
+        document.querySelectorAll('.java-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('⚙️ Демо-режим. В реальной системе здесь будет действие.');
+            });
+        });
+    </script>
+</body>
+</html>
