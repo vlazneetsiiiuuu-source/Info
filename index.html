@@ -33,7 +33,7 @@
         }
 
         .hero {
-            background: linear-gradient(140deg, #0f172a, #1e293b);
+            background: linear-gradient(145deg, #0f172a, #1e293b);
             color: white;
             padding: 28px 20px 32px;
             border-radius: 0 0 32px 32px;
@@ -749,7 +749,7 @@ public class MyFrame extends JFrame {
     </div>
 
     <script>
-        // ========== ПЕРЕКЛЮЧЕНИЕ КУРСОВ ==========
+       
         const tabs = document.querySelectorAll('.course-tab');
         const courses = {
             1: document.getElementById('course-1'),
@@ -764,7 +764,7 @@ public class MyFrame extends JFrame {
             tabs.forEach(tab => tab.classList.remove('active'));
             document.querySelector(`.course-tab[data-course="${courseId}"]`).classList.add('active');
 
-            // Перезапускаем игру при переходе на 2-й курс
+           
             if (courseId == 2) {
                 setTimeout(() => restartGame(), 100);
             }
@@ -777,7 +777,7 @@ public class MyFrame extends JFrame {
             });
         });
 
-        // Показываем 1-й курс по умолчанию
+    
         showCourse(1);
 
         const dino = document.getElementById('dino');
@@ -908,17 +908,17 @@ public class MyFrame extends JFrame {
 
         restartBtn.addEventListener('click', restartGame);
 
-        // Демо-режим для кнопок формы
         document.querySelectorAll('.java-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('⚙️ Демо-режим. В реальной системе здесь будет действие.');
+                alert('В реальной системе здесь будет действие.');
             });
         });
     </script>
 </body>
 
 </html>
+
 
 
 
